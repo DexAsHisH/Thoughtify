@@ -23,14 +23,14 @@ export default function Sidebar() {
         </Link>
         {session ? (
           <button
-            className='bg-blue-400 text-white rounded-full  hover:brightness-95 transition-all duration-200 w-48 h-9 shadow-md hidden xl:inline font-semibold'
+            className='bg-blue-400 text-white rounded-full  hover:brightness-95 transition-all duration-200 w-full sm: h-9 shadow-md font-semibold'
             onClick={() => signOut()}
           >
             Sign Out
           </button>
         ) : (
           <button
-            className='bg-blue-400 text-white rounded-full  hover:brightness-95 transition-all duration-200 w-48 h-9 shadow-md hidden xl:inline font-semibold'
+            className='bg-blue-400 text-white rounded-full  hover:brightness-95 transition-all duration-200 w-full sm:h-9 shadow-md font-semibold'
             onClick={() => signIn()}
           >
             Sign In
