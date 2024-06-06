@@ -6,9 +6,7 @@ export default function News() {
   const [news, setNews] = useState([]);
   const [articleNum, setArticleNum] = useState(3);
   
-  // Replace 'YOUR_API_KEY' with your actual API key
-  const API_KEY = 'b60fafc6993342f1bcfe742e13f89316';
-  const API_URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${API_KEY}`;
+  const API_URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=b60fafc6993342f1bcfe742e13f89316`;
   
   useEffect(() => {
     fetch(API_URL)
