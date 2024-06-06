@@ -120,7 +120,7 @@ export default function Input() {
             type='file'
             ref={imagePickRef}
             accept='image/*'
-            onChange={addImageToPost}
+            onChange={addImageToPost}//x
             hidden
           />
           <button
