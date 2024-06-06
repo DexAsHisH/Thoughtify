@@ -4,41 +4,56 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { FaXTwitter } from 'react-icons/fa6';
 import { HiHome, HiDotsHorizontal } from 'react-icons/hi';
+import React from 'react';
 
-export default function Sidebar() {
-  const { data: session } = useSession();
-  console.log(session);
+const Sidebar = () => {
+  const { data: session, status } = useSession();
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'error') {
+    return <div>Error loading session</div>;
+  }
+
   return (
     <div className='flex flex-col p-3 justify-between h-screen'>
-      <div className='flex flex-col gap-4 '>
-        <Link href='/'>
-          <FaXTwitter className='w-16 h-16 cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200 ' />
+      <div className='flex flex-col gap-4'>
+        <Link href='/' passHref>
+          <button aria-label='Twitter Home' className='flex justify-center'>
+            <FaXTwitter className='w-16 h-16 cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200' />
+          </button>
         </Link>
-        <Link
-          href='/'
-          className='flex items-center p-3 hover:bg-gray-100 rounded-full transition-all duration-200 gap-2 w-fit'
-        >
-          <HiHome className='w-7 h-7' />
-          <span className='font-bold hidden xl:inline'>Home</span>
+        <Link href='/' passHref>
+          <button
+            className='flex items-center p-3 hover:bg-gray-100 rounded-full transition-all duration-200 gap-2 w-full sm:w-auto'
+            aria-label='Home'
+          >
+            <HiHome className='w-7 h-7' />
+            <span className='font-bold hidden xl:inline'>Home</span>
+          </button>
         </Link>
         {session ? (
           <button
-            className='bg-blue-400 text-white rounded-full  hover:brightness-95 transition-all duration-200 w-full sm: h-9 shadow-md font-semibold'
+            className='bg-blue-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-full sm:w-48 h-9 shadow-md font-semibold'
             onClick={() => signOut()}
+            aria-label='Sign Out'
           >
             Sign Out
           </button>
         ) : (
           <button
-            className='bg-blue-400 text-white rounded-full  hover:brightness-95 transition-all duration-200 w-full sm:h-9 shadow-md font-semibold'
+            className='bg-blue-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-full sm:w-48 h-9 shadow-md font-semibold'
             onClick={() => signIn()}
+            aria-label='Sign In'
           >
             Sign In
           </button>
         )}
       </div>
       {session && (
-        <div className='text-gray-700 text-sm flex items-center cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200'>
+        <div className='text-gray-700 text-sm flex items-center cursor-pointer p-3 hover:bg-gray-100 rounded-full transition-all duration-200 mt-4'>
           <img
             src={session.user.image}
             alt='user-img'
@@ -54,3 +69,5 @@ export default function Sidebar() {
     </div>
   );
 }
+
+export default React.memo(Sidebar);
