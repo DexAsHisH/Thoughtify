@@ -6,15 +6,15 @@ export default function News() {
   const [news, setNews] = useState([]);
   const [articleNum, setArticleNum] = useState(3);
   
-  const API_URL = `https://newsapi.org/v2/top-headlines?country=in&apiKey=b60fafc6993342f1bcfe742e13f89316`;
+  const API_URI = `https://newsapi.org/v2/top-headlines?country=in&apiKey=b60fafc6993342f1bcfe742e13f89316`;
   
   useEffect(() => {
-    fetch(API_URL)
+    fetch(API_URI)
       .then((res) => res.json())
       .then((data) => {
         setNews(data.articles);
       });
-  }, []);
+  }, []);//
   
   return (
     <div className='text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2'>
