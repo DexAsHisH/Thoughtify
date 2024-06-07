@@ -2,3 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+  /* globals.css */
+  html {
+    @apply transition-colors duration-300; /* Smooth transition */
+  }
+  
+  html.dark {
+    @apply bg-black text-white;
+  }
+  
+  html:not(.dark) {
+    @apply bg-white text-black;
+  }

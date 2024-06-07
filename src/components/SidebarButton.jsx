@@ -8,7 +8,7 @@ const SidebarButton = () => {
 
   return session ? (
     <button
-      className='bg-blue-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-auto h-9 shadow-md font-semibold'
+      className='bg-blue-400 text-white rounded-full hover:brightness-95 dark:hover:bg-blue-500 transition-all duration-200 w-auto h-9 shadow-md font-semibold dark:bg-blue-500 dark:text-gray-100'
       onClick={() => signOut()}
       aria-label='Sign Out'
     >
@@ -16,7 +16,7 @@ const SidebarButton = () => {
     </button>
   ) : (
     <button
-      className='bg-blue-400 text-white rounded-full hover:brightness-95 transition-all duration-200 w-auto h-9 shadow-md font-semibold'
+      className='bg-blue-400 text-white rounded-full hover:brightness-95 dark:hover:bg-blue-500 transition-all duration-200 w-auto h-9 shadow-md font-semibold dark:bg-blue-500 dark:text-gray-100'
       onClick={() => signIn()}
       aria-label='Sign In'
     >

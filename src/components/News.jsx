@@ -5,27 +5,26 @@ import { useEffect, useState } from 'react';
 export default function News() {
   const [news, setNews] = useState([]);
   const [articleNum, setArticleNum] = useState(3);
-  
   const API_URI = `https://newsapi.org/v2/top-headlines?country=in&apiKey=b60fafc6993342f1bcfe742e13f89316`;
-  
+
   useEffect(() => {
     fetch(API_URI)
       .then((res) => res.json())
       .then((data) => {
         setNews(data.articles);
       });
-  }, []);//
-  
+  }, []);
+
   return (
-    <div className='text-gray-700 space-y-3 bg-gray-100 rounded-xl pt-2'>
+    <div className='text-gray-700 dark:text-gray-300 space-y-3 bg-gray-100 dark:bg-gray-900 rounded-xl pt-2'>
       <h4 className='font-bold text-xl px-4'>What's happening</h4>
       {news.slice(0, articleNum).map((article) => (
         <div key={article.url}>
           <a href={article.url} target='_blank' rel='noopener noreferrer'>
-            <div className='flex items-center justify-between px-4 py-2 space-x-1 hover:bg-gray-200 transition duration-200'>
+            <div className='flex items-center justify-between px-4 py-2 space-x-1 hover:bg-gray-200 dark:hover:bg-gray-800 transition duration-200'>
               <div className='space-y-0.5'>
                 <h6 className='text-sm font-bold'>{article.title}</h6>
-                <p className='text-xs font-medium text-gray-500'>
+                <p className='text-xs font-medium text-gray-500 dark:text-gray-400'>
                   {article.source.name}
                 </p>
               </div>
@@ -38,7 +37,7 @@ export default function News() {
       ))}
       <button
         onClick={() => setArticleNum(articleNum + 3)}
-        className='text-blue-300 pl-4 pb-3 hover:text-blue-400 text-sm'
+        className='text-blue-300 dark:text-blue-400 pl-4 pb-3 hover:text-blue-400 dark:hover:text-blue-500 text-sm'
       >
         Load more
       </button>
